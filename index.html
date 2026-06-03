@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cory Gill | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-color:#141414;--text-main:#f5f5f5;--text-muted:#888888;--accent-orange:#E65C3D;--border-color:#2A2A2A;--row-hover:#1f1f1f;--font-serif:'Fraunces',serif;--font-sans:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:var(--bg-color);color:var(--text-main);font-family:var(--font-sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+        nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border-color);}
+        .logo{font-family:var(--font-serif);font-size:1.2rem;font-weight:900;display:flex;align-items:center;gap:10px;}
+        .logo-square{width:12px;height:12px;background-color:var(--accent-orange);}
+        .nav-links{display:flex;gap:15px;align-items:center;}
+        .nav-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-main);border:1px solid var(--border-color);padding:8px 16px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;transition:all 0.2s ease;}
+        .nav-btn:hover{background-color:var(--text-main);color:var(--bg-color);}
+        .nav-btn svg{width:16px;height:16px;fill:currentColor;}
+        .hero{text-align:center;padding:80px 20px 60px;}
+        .hero-kicker{font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:15px;}
+        .hero h1{font-family:var(--font-serif);font-size:4rem;line-height:1.1;letter-spacing:-1px;margin-bottom:30px;color:var(--accent-orange);}
+        .about-text{max-width:800px;margin:0 auto 40px;text-align:left;color:var(--text-muted);font-size:1.1rem;display:flex;flex-direction:column;gap:20px;}
+        .highlight-text{color:var(--text-main);font-weight:600;}
+        .container{max-width:1000px;margin:0 auto;padding:0 20px 60px;}
+        .section-header{margin-bottom:20px;}
+        .section-header h2{font-family:var(--font-serif);font-size:2.5rem;margin-bottom:5px;}
+        .section-header p{color:var(--text-muted);font-size:0.9rem;}
+        .data-table{border:1px solid var(--border-color);border-radius:8px;overflow:hidden;}
+        .table-header{display:flex;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--border-color);font-size:0.75rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;}
+        .table-row{display:flex;align-items:center;padding:20px;border-bottom:1px solid var(--border-color);text-decoration:none;color:var(--text-main);transition:background 0.2s;}
+        .table-row:last-child{border-bottom:none;}
+        .table-row:hover{background-color:var(--row-hover);}
+        .row-index{font-family:var(--font-serif);font-size:1.5rem;color:var(--accent-orange);width:50px;font-weight:900;}
+        .row-content{flex-grow:1;font-family:var(--font-sans);font-size:1.1rem;font-weight:500;display:flex;align-items:center;gap:10px;}
+        .tech-tag{font-family:var(--font-sans);font-size:0.7rem;color:var(--text-muted);border:1px solid #444;padding:2px 6px;border-radius:4px;white-space:nowrap;}
+        .row-metrics{display:flex;align-items:center;gap:30px;text-align:right;}
+        .primary-metric{font-family:var(--font-serif);font-size:1.5rem;color:var(--accent-orange);font-weight:900;}
+        .metric-label{font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;margin-left:5px;text-transform:uppercase;}
+        .secondary-metric{font-family:var(--font-mono);color:var(--text-muted);width:140px;text-align:right;}
+        .toggle-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding-bottom:10px;border-bottom:1px dashed transparent;transition:border-color 0.2s;}
+        .toggle-header:hover{border-bottom:1px dashed var(--border-color);}
+        .toggle-icon{font-family:var(--font-mono);color:var(--accent-orange);font-weight:700;font-size:1.2rem;user-select:none;}
+        .expandable-content{max-height:0;overflow-y:hidden;transition:max-height 0.4s ease-out;}
+        .expandable-content.expanded{max-height:500px;overflow-y:auto;}
+        #news-table .table-header{position:sticky;top:0;background-color:var(--bg-color);z-index:10;}
+        .expandable-content::-webkit-scrollbar{width:8px;}
+        .expandable-content::-webkit-scrollbar-track{background:var(--bg-color);border-left:1px solid var(--border-color);}
+        .expandable-content::-webkit-scrollbar-thumb{background:var(--border-color);border-radius:4px;}
+        .expandable-content::-webkit-scrollbar-thumb:hover{background:#444;}
+        .news-logo{width:24px;height:24px;border-radius:4px;display:block;}
+        .work-group{border-bottom:1px solid var(--border-color);}
+        .work-group .table-row{border-bottom:none;}
+        .work-details{max-height:0;overflow:hidden;transition:max-height 0.3s ease-out,padding 0.3s ease;background-color:var(--row-hover);padding:0 40px;}
+        .work-details.expanded{max-height:300px;padding:0 40px 20px 40px;}
+        .work-details ul{list-style-type:square;color:var(--text-muted);font-size:0.95rem;font-family:var(--font-sans);margin-left:20px;}
+        .work-details li{margin-bottom:8px;}
+        .expand-btn{background:transparent;border:1px solid var(--border-color);color:var(--text-muted);font-family:var(--font-mono);padding:6px 12px;border-radius:4px;cursor:pointer;transition:0.2s;font-weight:700;}
+        .expand-btn:hover{color:var(--accent-orange);border-color:var(--accent-orange);}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><div class="logo-square"></div>corygillportfolio</div>
+        <div class="nav-links">
+            <a href="https://github.com/cbg-c?tab=repositories" target="_blank" class="nav-btn"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a href="https://www.linkedin.com/in/cory-g-a9856722b/" target="_blank" class="nav-btn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+            <a href="resume.pdf" download="Cory_Gill_Resume.pdf" class="nav-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Resume</a>
+        </div>
+    </nav>
+    <header class="hero">
+        <div class="hero-kicker">Computer Science • Software Engineering • EV Technology</div>
+        <h1>Cory Gill</h1>
+        <div class="about-text">
+            <p>I am a Computer Science student (26/40 credits completed) with a deep passion for the electric vehicle revolution. Modern EVs are essentially high-performance computers on wheels, and I am driven by the challenge of bridging complex software with mechanical hardware.</p>
+            <p>Equipped with certifications in Google IT Support, Data Analytics, and IBM Full Stack Development, I specialize in methodical problem-solving, rapid learning, and turning complex data—like sensor telemetry and diagnostic codes—into clear, actionable solutions. Whether analyzing grid data for public charging networks or troubleshooting high-voltage vehicle systems, I thrive in fast-paced environments where innovation moves quickly.</p>
+            <p class="highlight-text">Currently seeking internships and roles in EV service, technical support, or market development.</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="section-header"><h2>education</h2><p>academic background and degrees</p></div>
+        <div class="data-table">
+            <div class="table-header"><div>DEGREE / INSTITUTION</div><div>TIMELINE</div></div>
+            <div class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=uopeople.edu&sz=64" class="news-logo"></div><div class="row-content">BS, Computer Science <span class="tech-tag">University of the People</span></div><div class="row-metrics"><div class="secondary-metric">May 2025 – Apr 2027</div></div></div>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/7N0NHBNGCTSB" target="_blank" class="table-row"><div class="row-index"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" class="news-logo" style="background-color:white;padding:2px;"></div><div class="row-content">Full-Stack Developer Certificate <span class="tech-tag">IBM</span></div><div class="row-metrics"><div class="secondary-metric">Oct 2025 ↗</div></div></a>
+            <a href="https://www.credly.com/badges/10874dfe-265f-4757-bd80-46f25206c113/academic_transcript" target="_blank" class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" class="news-logo"></div><div class="row-content">Google IT Support Certificate <span class="tech-tag">Coursera</span></div><div class="row-metrics"><div class="secondary-metric">Aug 2025 ↗</div></div></a>
+            <a href="https://www.credly.com/badges/d495c0ae-fb72-46f4-be0d-6f65eb9361df/academic_transcript" target="_blank" class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" class="news-logo"></div><div class="row-content">Google Data Analytics Certificate <span class="tech-tag">Coursera</span></div><div class="row-metrics"><div class="secondary-metric">Jan 2022 ↗</div></div></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-header"><h2>top projects</h2><p>repositories ranked against my tech stack</p></div>
+        <div class="data-table">
+            <div class="table-header"><div>TOP REPOS · GITHUB</div><div>LINKS</div></div>
+            <a href="https://github.com/cbg-c/xrwvm-fullstack_developer_capstone" target="_blank" class="table-row"><div class="row-index">1</div><div class="row-content">Full-Stack Capstone Project <span class="tech-tag">JavaScript</span></div><div class="row-metrics"><div><span class="primary-metric">245</span><span class="metric-label">COMMITS</span></div><div class="secondary-metric">REPO ↗</div></div></a>
+            <a href="https://github.com/cbg-c/Paradise-Nursery" target="_blank" class="table-row"><div class="row-index">2</div><div class="row-content">Nursery Website <span class="tech-tag">React</span></div><div class="row-metrics"><div><span class="primary-metric">4</span><span class="metric-label">COMMITS</span></div><div class="secondary-metric">REPO ↗</div></div></a>
+            <a href="https://github.com/cbg-c/simple-interest-calc" target="_blank" class="table-row"><div class="row-index">3</div><div class="row-content">Simple Interest Calculator <span class="tech-tag">PYTHON</span></div><div class="row-metrics"><div><span class="primary-metric">6</span><span class="metric-label">COMMITS</span></div><div class="secondary-metric">REPO ↗</div></div></a>
+            <a href="https://github.com/cbg-c/PythonProjects" target="_blank" class="table-row"><div class="row-index">4</div><div class="row-content">Python Projects <span class="tech-tag">PYTHON</span></div><div class="row-metrics"><div><span class="primary-metric">7</span><span class="metric-label">COMMITS</span></div><div class="secondary-metric">REPO ↗</div></div></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-header"><h2>work experience</h2><p>professional history and roles</p></div>
+        <div class="data-table">
+            <div class="table-header"><div>ROLE / COMPANY</div><div>DESCRIPTION</div></div>
+            <div class="work-group">
+                <div class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=usps.com&sz=64" class="news-logo"></div><div class="row-content">Rural Carrier Associate <span class="tech-tag">USPS</span></div><div class="row-metrics"><div class="secondary-metric">2025 - 2026</div><button class="expand-btn" onclick="toggleWork('work1',this)">[ + ]</button></div></div>
+                <div id="work1" class="work-details"><ul><li>Delivered mail and packages on assigned rural routes, demonstrating reliability and time management under strict deadlines.</li><li>Navigated variable and often challenging environmental conditions while maintaining safety and accuracy.</li><li>Managed and tracked delivery documentation, ensuring all records were accurate and up-to-date.</li><li>Communicated effectively with customers and team members to resolve delivery issues promptly.</li></ul></div>
+            </div>
+            <div class="work-group">
+                <div class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=lyft.com&sz=64" class="news-logo"></div><div class="row-content">Logistics Specialist <span class="tech-tag">Lyft</span></div><div class="row-metrics"><div class="secondary-metric">2020 - 2024</div><button class="expand-btn" onclick="toggleWork('work2',this)">[ + ]</button></div></div>
+                <div id="work2" class="work-details"><ul><li>Maintained exceptional customer service through consistent communication and problem resolution.</li><li>Managed schedules and routes efficiently, emphasizing punctuality and reliability.</li><li>Demonstrated ability to adapt quickly to changing environments and customer needs, transferable to a lab setting.</li></ul></div>
+            </div>
+            <div class="work-group">
+                <div class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=indusmodernkitchen.com&sz=64" class="news-logo"></div><div class="row-content">Assistant Manager <span class="tech-tag">Indus Modern Kitchen</span></div><div class="row-metrics"><div class="secondary-metric">2017 - 2020</div><button class="expand-btn" onclick="toggleWork('work3',this)">[ + ]</button></div></div>
+                <div id="work3" class="work-details"><ul><li>Oversaw operations ensuring quality control and adherence to standards, comparable to quality assurance in lab environments.</li><li>Managed inventory and performed data entry with accuracy using spreadsheets and tracking tools.</li><li>Trained staff on operational procedures, emphasizing compliance and safety protocols.</li></ul></div>
+            </div>
+            <div class="work-group" style="border-bottom:none;">
+                <div class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=walgreens.com&sz=64" class="news-logo"></div><div class="row-content">Customer Service Associate <span class="tech-tag">Walgreens</span></div><div class="row-metrics"><div class="secondary-metric">2016 - 2017</div></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-header toggle-header" onclick="toggleNews()"><div><h2>ev news • live feed</h2><p>click to connect to live network API</p></div><div class="toggle-icon" id="news-icon">[ + ]</div></div>
+        <div class="expandable-content" id="news-container">
+            <div class="data-table" id="news-table">
+                <div class="table-header"><div>LATEST HEADLINES</div><div>DATE</div></div>
+                <div class="table-row" id="news-loading"><div class="row-content" style="color:var(--text-muted);">[ establishing connection to live feeds... ]</div></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleWork(id,btn){btn.innerText=document.getElementById(id).classList.toggle('expanded')?'[ - ]':'[ + ]';}
+        let newsLoaded=false;
+        function toggleNews(){
+            const c=document.getElementById('news-container'),i=document.getElementById('news-icon');
+            if(c.classList.toggle('expanded')){i.innerText='[ - ]';if(!newsLoaded)fetchEVNews();}else i.innerText='[ + ]';
+        }
+        async function fetchEVNews(){
+            const t=document.getElementById('news-table'),l=document.getElementById('news-loading');
+            const feeds=[{u:'https://electrek.co/feed/',d:'electrek.co'},{u:'https://cleantechnica.com/feed/',d:'cleantechnica.com'},{u:'https://insideevs.com/rss/news/all/',d:'insideevs.com'}];
+            try{
+                let a=[];
+                await Promise.all(feeds.map(f=>fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(f.u)}`).then(r=>r.json()).then(d=>{if(d.status==='ok')d.items.forEach(i=>{i.domain=f.d;a.push(i);})}).catch(e=>console.error(e))));
+                if(a.length>0){
+                    l.style.display='none';
+                    a.sort((x,y)=>new Date(y.pubDate)-new Date(x.pubDate)).slice(0,25).forEach(i=>{
+                        const pd=new Date(i.pubDate).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+                        t.insertAdjacentHTML('beforeend',`<a href="${i.link}" target="_blank" class="table-row"><div class="row-index"><img src="https://www.google.com/s2/favicons?domain=${i.domain}&sz=64" class="news-logo"></div><div class="row-content">${i.title}</div><div class="row-metrics"><div class="secondary-metric">${pd} ↗</div></div></a>`);
+                    });
+                    newsLoaded=true;
+                }else throw new Error();
+            }catch{l.innerHTML='<div class="row-content" style="color:var(--accent-orange);">[ ERROR: STREAM OFFLINE ]</div>';}
+        }
+    </script>
+</body>
+</html>
