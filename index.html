@@ -152,26 +152,15 @@
                 }else throw new Error();
             }catch{l.innerHTML='<div class="row-content" style="color:var(--accent-orange);">[ ERROR: STREAM OFFLINE ]</div>';}
         }
-        async function logVisitorIP() {
-            const webAppUrl = 'https://script.google.com/macros/s/AKfycbwtcfO7gS9h3EIbQgF4aoyNbgp8OaCB20x5isG4uLVdoUi3jzuxsYg2EJXKhs3V2r-x/exec'; 
-            try {
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const visitorIP = ipData.ip;
-                await fetch(webAppUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ ip: visitorIP })
-                });
-                
-            } catch (error) {
-                console.error("Tracking blocked or failed.");
-            }
-        }
-        window.addEventListener('load', logVisitorIP);
+    </script>
+    <script>
+    window.addEventListener('load', async () => {
+        try {
+            const req = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
+            const ip = (await req.text()).match(/ip=(.*)/)[1];
+            await fetch('YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE', { method: 'POST', mode: 'no-cors', body: JSON.stringify({ip}) });
+        } catch (e) {}
+    });
     </script>
 </body>
 </html>
