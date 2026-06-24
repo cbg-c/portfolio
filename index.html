@@ -157,7 +157,7 @@
     window.addEventListener('load', async () => {
         try {
             const trace = await (await fetch('https://www.cloudflare.com/cdn-cgi/trace')).text();
-            await fetch('https://script.google.com/macros/s/AKfycbwtcfO7gS9h3EIbQgF4aoyNbgp8OaCB20x5isG4uLVdoUi3jzuxsYg2EJXKhs3V2r-x/exec', {
+            await fetch('https://script.google.com/macros/s/AKfycbxERb4zIa0hT01tNhxue40ztJGGYMj5hFxTDTshEbidgTwz3QnjzFs0Tnwks26Ktuh6/exec', {
                 method: 'POST',
                 mode: 'no-cors',
                 body: JSON.stringify({ ip: trace.match(/ip=(.*)/)[1] })
