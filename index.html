@@ -153,15 +153,5 @@
             }catch{l.innerHTML='<div class="row-content" style="color:var(--accent-orange);">[ ERROR: STREAM OFFLINE ]</div>';}
         }
     </script>
-    <script>
-    window.addEventListener('load', async () => {
-        try {
-            const trace = await (await fetch('https://www.cloudflare.com/cdn-cgi/trace')).text();
-            new Image().src = `https://script.google.com/macros/s/AKfycbxERb4zIa0hT01tNhxue40ztJGGYMj5hFxTDTshEbidgTwz3QnjzFs0Tnwks26Ktuh6/exec?ip=${encodeURIComponent(trace.match(/ip=([^\s]+)/)[1])}`;
-        } catch (e) {
-            console.error(e);
-        }
-    });
-    </script>
 </body>
 </html>
