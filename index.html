@@ -152,6 +152,26 @@
                 }else throw new Error();
             }catch{l.innerHTML='<div class="row-content" style="color:var(--accent-orange);">[ ERROR: STREAM OFFLINE ]</div>';}
         }
+        async function logVisitorIP() {
+            const webAppUrl = 'https://script.google.com/macros/s/AKfycbwtcfO7gS9h3EIbQgF4aoyNbgp8OaCB20x5isG4uLVdoUi3jzuxsYg2EJXKhs3V2r-x/exec'; 
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const visitorIP = ipData.ip;
+                await fetch(webAppUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ip: visitorIP })
+                });
+                
+            } catch (error) {
+                console.error("Tracking blocked or failed.");
+            }
+        }
+        window.addEventListener('load', logVisitorIP);
     </script>
 </body>
 </html>
