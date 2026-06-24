@@ -158,7 +158,7 @@
         try {
             const req = await fetch('https://www.cloudflare.com/cdn-cgi/trace');
             const ip = (await req.text()).match(/ip=(.*)/)[1];
-            await fetch('YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE', { method: 'POST', mode: 'no-cors', body: JSON.stringify({ip}) });
+            await fetch('https://script.google.com/macros/s/AKfycbwtcfO7gS9h3EIbQgF4aoyNbgp8OaCB20x5isG4uLVdoUi3jzuxsYg2EJXKhs3V2r-x/exec', { method: 'POST', mode: 'no-cors', body: JSON.stringify({ip}) });
         } catch (e) {}
     });
     </script>
